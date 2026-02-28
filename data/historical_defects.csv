@@ -1,0 +1,5 @@
+log
+Login test failing due to slow page load.
+Payment API failing due to expired token.
+Claim submission failing due to incorrect deductible.
+UI test failing due to dynamic locator.
