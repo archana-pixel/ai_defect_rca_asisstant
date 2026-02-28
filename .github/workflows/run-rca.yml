@@ -1,9 +1,9 @@
 name: Run AI Defect RCA Automatically
 
-# Trigger workflow on push or manual run
+# Trigger workflow on push to master or manual run
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:
@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout the repo
-      - name: Checkout code
+      # 1️⃣ Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       # 2️⃣ Setup Python
@@ -27,13 +27,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # 4️⃣ Set environment variables for OpenAI
-      - name: Load OpenAI API key
+      # 4️⃣ Run sample RCA script with OpenAI key
+      - name: Run Sample RCA
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: echo "OpenAI API key loaded"
-
-      # 5️⃣ Run sample RCA analysis
-      - name: Run RCA Script
-        run: |
-          python scripts/sample_rca.py
+        run: python scripts/sample_rca.py
