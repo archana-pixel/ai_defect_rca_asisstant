@@ -31,4 +31,6 @@ jobs:
       - name: Run Sample RCA
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python scripts/sample_rca.py
+        run:  | 
+         export PYTHONPATH="${PYTHONPATH}:$GITHUB_WORKSPACE"
+         python scripts/sample_rca.py
